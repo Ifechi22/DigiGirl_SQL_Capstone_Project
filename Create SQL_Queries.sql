@@ -9,13 +9,12 @@ LIMIT 1;
 
 -- Compare the total profit between these two territories in order for the territory manager,Mr. Stone to make a strategic decision that will aid profit maximization in 2020.
 SELECT CASE
-WHEN countries IN ('Nigeria', 'Ghana') THEN 'Anglophone
-ELSE 'Francophone' END AS territory, SUM(profit) AS territory_profit 
-FROM International breweries
-GROUP BY territory
-ORDER BY territory_profit DESC;
+WHEN countries IN ('Nigeria', 'Ghana') THEN 'Anglophone ELSE 'Francophone' END AS territory, SUM(profit) AS territory_profit 
+                 FROM International breweries
+                   GROUP BY territory
+                      ORDER BY territory_profit DESC;
 
--- What country generated the highest profit in 2019
+-- What country generated the highest profit in 2019?
 SELECT countries AS highest_profit_country, SUM(profit) AS total_profit
 FROM International breweries
 WHERE years 2019
@@ -31,8 +30,8 @@ ORDER BY total_profit DESC
 LIMIT 1;
 
 -- Which month in the three years was the least profit generated?
-SELECT months, years, SUM(profit) AS
-least _profit_generated FROM international breweries
+SELECT months, years, SUM(profit) AS least _profit_generated 
+FROM international breweries
 GROUP BY months, years
 ORDER BY least_profit_generated
 LIMIT 1;
@@ -50,18 +49,18 @@ FROM international breweries
 WHERE years 2019
 GROUP BY months
 ORDER BY CASE
-WHEN months January' THEN 1
-WHEN months 'February' THEN 2
-WHEN months 'March' THEN 3
-WHEN months 'April' THEN 4
-WHEN months 'May'  THEN 5
-WHEN months 'June' THEN 6
-WHEN months 'July'  THEN 7
-WHEN months 'August'  THEN 8
-WHEN months 'September'  THEN 9
-WHEN months 'October ' THEN 10
-WHEN months 'November' THEN 11
-WHEN months 'December '  THEN 12 ;
+             WHEN months January' THEN 1
+             WHEN months 'February' THEN 2
+             WHEN months 'March' THEN 3
+             WHEN months 'April' THEN 4
+             WHEN months 'May'  THEN 5
+             WHEN months 'June' THEN 6
+             WHEN months 'July'  THEN 7
+             WHEN months 'August'  THEN 8
+             WHEN months 'September'  THEN 9
+             WHEN months 'October ' THEN 10
+             WHEN months 'November' THEN 11
+             WHEN months 'December '  THEN 12 ;
 
 -- Which particular brand generated the highest profit in Senegal?
 SELECT brands, SUM(profit) AS total_profit
@@ -77,9 +76,9 @@ LIMIT 1;
 SELECT brands AS francophone_top_three, SUM(quantity) AS total_quantity
 FROM international breweries
 WHERE countries IN ('Senegal', 'Benin', 'Togo') AND years 2017
-GROUP BY brands
-ORDER BY total, quantity DESC
-LIMIT 3;
+                   GROUP BY brands
+                   ORDER BY total, quantity DESC
+                    LIMIT 3;
 
 -- Find out the top two choice of consumer brands in Ghana
 SELECT brands AS Ghana_top_two, SUM(quantity) AS total_quantity
@@ -100,8 +99,8 @@ ORDER BY years, amt_cousumed;
 SELECT brands AS fav_malt_brand, SUM(quantity) AS total_consumed 
 FROM international_breweries
 WHERE countries IN ('Nigeria', 'Ghana') AND years BETWEEN 2018 AND 2019 AND brands LIKE '%malt'
-GROUP BY brands
-ORDER BY total_consumed DESC;
+                   GROUP BY brands
+                    ORDER BY total_consumed DESC;
 
 -- Which brands sold the highest in 2019 in Nigeria?
 SELECT brands AS highest_brand, SUM(quantity) AS total_consumed
@@ -162,6 +161,6 @@ LIMIT 1;
 SELECT countries AS country, SUM(profit) AS Highest_profit
 FROM international_breweries
 WHERE months IN ('September','October','November','December') AND years = 2019 
-GROUP BY countries
-ORDER BY Highest_profit DESC
-LIMIT 1;
+                GROUP BY countries
+                 ORDER BY Highest_profit DESC
+                  LIMIT 1;
